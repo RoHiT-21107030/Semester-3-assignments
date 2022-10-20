@@ -12,55 +12,31 @@ A1. An in-place algorithm is an algorithm that does not need an extra space
 """
 Q2. Implement Insertion sort in both (in-place and out-place) manner.
 """
-# An in-place Python program
-# to reverse an array
-
-''' Function to reverse arr[]
-	from start to end'''
-def reverseArray(arr, n):
-	
-	for i in range(0, int(n / 2)):
-		arr[i], arr[n - i - 1] = arr[n - i - 1], arr[i]
+# Insertion sort in in-place manner.
 
 
-# Driver code
-if __name__ == "__main__":
-	
-	arr = [1, 2, 3, 4, 5, 6]
-	n = len(arr)
-	print(*arr)
-	reverseArray(arr, n)
-	print("Reversed array is")
-	print(*arr)
-	
-# An Not in-place Python program
-# to reverse an array
+def insertionSort(array):
 
-''' Function to reverse arr[]
-	from start to end '''
-def reverseArray(arr, n):
-	
-	# Create a copy array
-	# and store reversed
-	# elements
-	rev = n * [0]
-	for i in range(0, n):
-		rev[n - i - 1] = arr[i]
-			
-	# Now copy reversed
-	# elements back to arr[]
-	for i in range(0, n):
-		arr[i] = rev[i]
-		
-# Driver code
-if __name__ == "__main__":
-	arr = [1, 2, 3, 4, 5, 6]
-	n = len(arr)
-	print(*arr)
-	reverseArray(arr, n);
-	print("Reversed array is")
-	print(*arr)
-	
+    for step in range(1, len(array)):
+        key = array[step]
+        j = step - 1
+        
+        # Compare key with each element on the left of it until an element smaller than it is found
+        # For descending order, change key<array[j] to key>array[j].        
+        while j >= 0 and key < array[j]:
+            array[j + 1] = array[j]
+            j = j - 1
+        
+        # Place key at after the element just smaller than it.
+        array[j + 1] = key
+
+
+data = [9, 5, 1, 4, 3]
+insertionSort(data)
+print('Sorted Array in Ascending Order:')
+print(data)
+
+
 
 """
 Q3. Suggest some practical examples of using in-place and out-place techniques.
